@@ -81,7 +81,8 @@ install_version() {
   (
     mkdir -p "$release_bin"
     download_release "$version" "$release_tar"
-    tar -xf "$release_tar" -C "$release_bin" || fail "Could not extract $release_file"
+    tar -xf "$release_tar" -C "$install_path" --strip-components=1 || fail "Could not extract $release_file"
+    mv "$install_path/atuin" "$release_file"
     rm "$release_tar"
     chmod +x "$release_file"
 
